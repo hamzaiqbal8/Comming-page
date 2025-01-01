@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .countdown div {
+      text-align: center;
+    }
+
+    .countdown span {
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .countdown span {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Coming Soon</h1>
+    <p>Our website is under construction. Stay tuned for something amazing!</p>
+    <div class="countdown">
+      <div>
+        <span id="days">00</span>
+        Days
+      </div>
+      <div>
+        <span id="hours">00</span>
+        Hours
+      </div>
+      <div>
+        <span id="minutes">00</span>
+        Minutes
+      </div>
+      <div>
+        <span id="seconds">00</span>
+        Seconds
+      </div>
+    </div>
+    <div class="footer">
+      &copy; 2025 All Rights Reserved
+    </div>
+  </div>
+
+  <script>
+    function startCountdown(endDate) {
+      const countdownTimer = setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = endDate - now;
+
+        if (timeLeft < 0) {
+          clearInterval(countdownTimer);
+          document.querySelector('.countdown').innerHTML = '<p>The wait is over!</p>';
+          return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      }, 1000);
+    }
+
+    const launchDate = new Date("2025-01-10T00:00:00").getTime();
+    startCountdown(launchDate);
+  </script>
+</body>
+</html>
+
