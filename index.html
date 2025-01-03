@@ -101,9 +101,17 @@
   </div>
 
   <script>
+    const currentDate = new Date();
+    const futureDate = new Date();
+    futureDate.setDate(currentDate.getDate() + 7);
+    futureDate.setSeconds(currentDate.getSeconds() + 4);
+
     function startCountdown(endDate) {
       const countdownTimer = setInterval(() => {
         const now = new Date().getTime();
+
+        // Add 7 days
+
         const timeLeft = endDate - now;
 
         if (timeLeft < 0) {
@@ -124,7 +132,7 @@
       }, 1000);
     }
 
-    const launchDate = new Date("2025-01-10T00:00:00").getTime();
+    const launchDate = new Date(futureDate).getTime();
     startCountdown(launchDate);
   </script>
 </body>
